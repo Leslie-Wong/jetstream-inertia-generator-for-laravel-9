@@ -1,0 +1,60 @@
+{
+    "name": "savannabits/jetstream-inertia-generator",
+    "description": "Admin CRUD generator using Laravel Jetstream, Inertiajs, Vue.js, Pagetables and Tailwindcss",
+    "keywords": [
+        "savannabits",
+        "jetstream-inertia-generator"
+    ],
+    "homepage": "https://github.com/savannabits/jetstream-inertia-generator",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sam Maosa",
+            "email": "maosa.sam@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "doctrine/dbal": "^3.5",
+        "laravel/framework": "^8|^9",
+        "inertiajs/inertia-laravel": "^0.6",
+        "innocenzi/laravel-vite": "^0.2",
+        "laravel/jetstream": "^2.12",
+        "spatie/laravel-permission": "^4.2|^5",
+        "yajra/laravel-datatables": "^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^v7.14",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Savannabits\\JetstreamInertiaGenerator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Savannabits\\JetstreamInertiaGenerator\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Savannabits\\JetstreamInertiaGenerator\\JetstreamInertiaGeneratorServiceProvider"
+            ],
+            "aliases": {
+                "JetstreamInertiaGenerator": "Savannabits\\JetstreamInertiaGenerator\\JetstreamInertiaGeneratorFacade"
+            }
+        }
+    }
+}
