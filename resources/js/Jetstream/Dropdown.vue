@@ -65,6 +65,9 @@ export default {
         widthClass() {
             return {
                 '48': 'w-48',
+                '36': 'w-36',
+                '32': 'w-32',
+                '28': 'w-28',
             }[this.width.toString()]
         },
 

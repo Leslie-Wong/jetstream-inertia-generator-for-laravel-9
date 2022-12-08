@@ -12,7 +12,7 @@
             </div>
         </template>
         <div v-if="can.viewAny" class="flex flex-wrap px-4">
-            <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md">
+            <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md w-full">
                 <h3 class="w-full p-4 mb-2 text-lg font-black sm:rounded-t-lg bg-primary-100"><i class="mr-2 fas fa-bars"></i> List of All
                     {{Str::plural($modelTitle)}}</h3>
                 <div class="p-4">

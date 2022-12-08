@@ -3,19 +3,15 @@
     <nav class="sticky top-0 z-20 w-full bg-primary md:-top-0">
         <!-- Primary Navigation Menu -->
         <div class="pr-4 mx-auto sm:pr-6 lg:pr-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <!-- Logo -->
-                    <application-logo class="h-full px-8 bg-primary" />
-                    <!-- Navigation Links -->
-                    <div
-                        class="hidden  sm:-my-px text-gray-50 hover:text-gray-200 sm:ml-10 sm:flex"
-                    >
-                        <slot> </slot>
-                    </div>
-                </div>
 
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="flex w-full justify-between h-16">
+
+                <div class="hidden w-full sm:flex sm:items-center sm:ml-6">
+
+                    <div class="w-full ">
+                        <slot name="navbar-button"></slot>
+                    </div>
+
                     <div class="relative ml-3">
                         <!-- Teams Dropdown -->
                         <jet-dropdown
@@ -141,6 +137,11 @@
                         </jet-dropdown>
                     </div>
 
+
+
+
+                    <language-selector />
+
                     <!-- Settings Dropdown -->
                     <system-notifications-dropdown
                         :unread-notifications="[]"
@@ -192,6 +193,7 @@
                             </template>
 
                             <template #content>
+
                                 <!-- Account Management -->
                                 <div
                                     class="block px-4 py-2 text-xs text-gray-400 "
@@ -230,6 +232,7 @@
                             </template>
                         </jet-dropdown>
                     </div>
+
                 </div>
 
                 <!-- Hamburger -->
@@ -426,6 +429,7 @@ import SystemNotificationsDropdown from "@/JigComponents/SystemNotificationsDrop
 import ApplicationLogo from "@/JigComponents/ApplicationLogo.vue";
 import ApplicationMark from "@/JigComponents/ApplicationMark.vue";
 import { defineComponent } from "vue";
+import LanguageSelector from "@/LesComponents/LanguageSelector.vue";
 
 export default defineComponent({
     components: {
@@ -438,6 +442,7 @@ export default defineComponent({
         JetDropdownLink,
         ResponsiveNavLink,
         JetResponsiveNavLink,
+        LanguageSelector,
     },
     data() {
         return {

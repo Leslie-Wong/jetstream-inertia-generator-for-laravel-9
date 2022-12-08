@@ -11,7 +11,8 @@
 
 // Import modules...
 import 'dynamic-import-polyfill';
-import "~/css/app.css"
+import "../css/app.css"
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
@@ -20,6 +21,7 @@ import VueNumerals from "vue-numerals"
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime"
 import advancedFormat from "dayjs/plugin/advancedFormat"
+import translation from "../lang/translation"
 import 'flatpickr/dist/flatpickr.css';
 import { emitter } from "@/JigComponents/eventHub.js";
 import { Link } from "@inertiajs/inertia-vue3"
@@ -47,6 +49,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .mixin({ methods: { route, dayjs } })
+            .mixin(translation)
             .use(Notifications)
             .use(VueNumerals)
             .component('datepicker', () => import('vue-flatpickr-component'))

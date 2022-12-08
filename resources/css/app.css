@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tab-overflow-x::-webkit-scrollbar {
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.tab-overflow-x::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0px rgba(255, 255, 255, 0);
+    border-radius: 5px;
+}
+
+.tab-overflow-x::-webkit-scrollbar-thumb {
+  background-color: #e9e9e9;
+  outline: 0px solid slategrey;
+  border-radius: 5px;
+}
+
+
+.tab-overflow-x{
+    overflow-x: scroll;
+    width: 100%;
+}
+
+span.fi {
+    width: 26px;
+    height: auto;
+    line-height: unset;
+    text-align: center;
+ }
+
+ a span.fi {
+    margin-right: 10px;
+ }

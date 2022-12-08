@@ -115,6 +115,23 @@ class JetstreamInertiaGeneratorServiceProvider extends RouteServiceProvider
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/jetstream-inertia-generator'),
             ], 'lang');*/
 
+
+            // Service Providers...
+            copy(__DIR__.'/../app/providers/LangServiceProvider.php', app_path('Providers/LangServiceProvider.php'));
+
+            $this->installServiceProviderAfter('JetstreamServiceProvider', 'LangServiceProvider');
+
+            $helper_path = app_path('Helpers');
+            if (!file_exists($helper_path)) {
+                \File::makeDirectory($helper_path, 0755, true, true);
+            }
+
+            copy(__DIR__.'/../app/helpers/TranslationsHelper.php', app_path('Helpers/TranslationsHelper.php'));
+
+            $this->installMiddlewareAfter('\Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class', '\Savannabits\JetstreamInertiaGenerator\Middleware\JigMiddleware::class');
+            $this->installMiddlewareAfter('\Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class', '\Savannabits\JetstreamInertiaGenerator\Middleware\SetLocale::class');
+            $this->installMiddlewareAfter('\Illuminate\Session\Middleware\StartSession::class', '\Savannabits\JetstreamInertiaGenerator\Middleware\SetLocale::class',"api");
+
             // Registering package commands.
              $this->commands([JigInstaller::class]);
         }
@@ -132,5 +149,53 @@ class JetstreamInertiaGeneratorServiceProvider extends RouteServiceProvider
         $this->app->singleton('jetstream-inertia-generator', function () {
             return new JetstreamInertiaGenerator;
         });
+    }
+
+    /**
+     * Install the service provider in the application configuration file.
+     *
+     * @param  string  $after
+     * @param  string  $name
+     * @return void
+     */
+    protected function installServiceProviderAfter($after, $name)
+    {
+        if (! Str::contains($appConfig = file_get_contents(config_path('app.php')), 'App\\Providers\\'.$name.'::class')) {
+            file_put_contents(config_path('app.php'), str_replace(
+                'App\\Providers\\'.$after.'::class,',
+                'App\\Providers\\'.$after.'::class,'.PHP_EOL.'        App\\Providers\\'.$name.'::class,',
+                $appConfig
+            ));
+        }
+    }
+
+    /**
+     * Install the middleware to a group in the application Http Kernel.
+     *
+     * @param  string  $after
+     * @param  string  $name
+     * @param  string  $group
+     * @return void
+     */
+    protected function installMiddlewareAfter($after, $name, $group = 'web')
+    {
+        $httpKernel = file_get_contents(app_path('Http/Kernel.php'));
+
+        $middlewareGroups = Str::before(Str::after($httpKernel, '$middlewareGroups = ['), '];');
+        $middlewareGroup = Str::before(Str::after($middlewareGroups, "'$group' => ["), '],');
+
+        if (! Str::contains($middlewareGroup, $name)) {
+            $modifiedMiddlewareGroup = str_replace(
+                $after.',',
+                $after.','.PHP_EOL.'            '.$name.',',
+                $middlewareGroup,
+            );
+
+            file_put_contents(app_path('Http/Kernel.php'), str_replace(
+                $middlewareGroups,
+                str_replace($middlewareGroup, $modifiedMiddlewareGroup, $middlewareGroups),
+                $httpKernel
+            ));
+        }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <template #header>
+        <template #navbar-button>
             <h2 class="font-semibold text-xl text-secondary leading-tight">
                 Dashboard
             </h2>

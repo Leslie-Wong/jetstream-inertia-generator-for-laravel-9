@@ -113,6 +113,7 @@ export default defineComponent({
         console.log(colDefs);
         $(document).ready(function () {
             vm.table = $(`#${vm.tableId}`).DataTable({
+                dom: 'flip<"tab-overflow-x"t>',
                 processing: true,
                 serverSide: true,
                 stateSave: vm.stateSave,

@@ -6,7 +6,7 @@
 @endphp
 <template>
     <jig-layout>
-        <template {{"#"}}header>
+        <template {{#}}navbar-button>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
                 <inertia-link :href="route('admin.{{$modelRouteAndViewName}}.index')"
                               class="text-xl font-black text-white"><i
