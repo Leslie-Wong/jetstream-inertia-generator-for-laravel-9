@@ -1,6 +1,6 @@
 {{'@'}}extends('savannabits/admin-ui::admin.layout.default')
 
-{{'@'}}section('title', trans('admin.{{ $modelLangFormat }}.actions.edit', ['name' => ${{ $modelVariableName }}->{{$modelTitle}}]))
+{{'@'}}section('title', trans('admin.{{ $modelLangFormat }}.actions.edit', ['name' => ${{ $modelVariableName }}->{{__($modelTitle)}}]))
 
 {{'@'}}section('body')
 
@@ -25,7 +25,7 @@
                 <form class="form-horizontal" method="post" {{'@'}}submit.prevent="onSubmit" :action="action">
 
                     <div class="card-header">
-                        <i class="fa fa-plus"></i> {{'{{'}} trans('admin.{{ $modelLangFormat }}.actions.edit', ['name' => ${{ $modelVariableName }}->{{$modelTitle}}]) }}
+                        <i class="fa fa-plus"></i> {{'{{'}} trans('admin.{{ $modelLangFormat }}.actions.edit', ['name' => ${{ $modelVariableName }}->{{__($modelTitle)}}]) }}
                     </div>
 
                     <div class="card-body">

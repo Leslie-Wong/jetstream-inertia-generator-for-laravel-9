@@ -101,7 +101,7 @@
                 <inertia-button
                     @click.native.prevent="closeNotification"
                     class="bg-gray-300"
-                    >Close</inertia-button
+                    >{{__('Close')}}</inertia-button
                 >
                 <a
                     target="_blank"

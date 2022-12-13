@@ -78,7 +78,7 @@ class {{ $controllerBaseName }}  extends Controller
         try {
             $data = $request->sanitizedObject();
             ${{$modelVariableName}} = $this->repo::store($data);
-            return back()->with(['success' => "The {{$modelTitle}} was created succesfully."]);
+            return back()->with(['success' => "{{__('The ')}} {{__($modelTitle)}} {{__('was created succesfully.')}}"]);
         } catch (\Throwable $exception) {
             \Log::error($exception);
             return back()->with([

@@ -24,7 +24,7 @@
             </form>
         </div>
         <div slot="footer" class="text-right gap-x-2">
-            <inertia-button @click.native="$emit('close')" class="text-white bg-danger">Close</inertia-button>
+            <inertia-button @click.native="$emit('close')" class="text-white bg-danger">{{__('Close')}}</inertia-button>
             <inertia-button :disabled="!recipientNumber || !amount || processing" @click.native="makeDonation" class="text-white bg-success disabled:opacity-50">
                 <i class="fas fa-spinner fa-spin" v-if="processing"></i>
                 Make Donation

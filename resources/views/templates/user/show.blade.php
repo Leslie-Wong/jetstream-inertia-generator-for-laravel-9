@@ -7,7 +7,7 @@
                 <inertia-link
                     :href="route('admin.{{$modelRouteAndViewName}}.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> Back | Details of {{$modelTitle}}
+                ><i class="fas fa-arrow-left"></i> {{__('Back')}} | {{__('Details of')}} {{__($modelTitle)}}
                     #@{{ model.id }}</inertia-link>
             </div>
         </template>

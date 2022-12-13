@@ -61,7 +61,7 @@ class {{ $controllerBaseName }}  extends Controller
         try {
             $data = $request->sanitizedObject();
             ${{$modelVariableName}} = $this->repo::store($data);
-            return $this->api->success()->message('{{$modelTitle}} Created')->payload(${{$modelVariableName}})->send();
+            return $this->api->success()->message('{{ __($modelTitle)}} {{ __('Created')}}')->payload(${{$modelVariableName}})->send();
         } catch (\Throwable $exception) {
             \Log::error($exception);
             return $this->api->failed()->message($exception->getMessage())->payload([])->code(500)->send();
@@ -80,7 +80,7 @@ class {{ $controllerBaseName }}  extends Controller
         try {
             $payload = $this->repo::init(${{$modelVariableName}})->show($request);
             return $this->api->success()
-                        ->message("{{$modelTitle}} ${{$modelVariableName}}->id")
+                        ->message("{{__($modelTitle)}} ${{$modelVariableName}}->id")
                         ->payload($payload)->send();
         } catch (\Throwable $exception) {
             \Log::error($exception);
@@ -100,7 +100,7 @@ class {{ $controllerBaseName }}  extends Controller
         try {
             $data = $request->sanitizedObject();
             $res = $this->repo::init(${{$modelVariableName}})->update($data);
-            return $this->api->success()->message("{{$modelTitle}} has been updated")->payload($res)->code(200)->send();
+            return $this->api->success()->message("{{__($modelTitle)}} {{__('has been updated')}}")->payload($res)->code(200)->send();
         } catch (\Throwable $exception) {
             \Log::error($exception);
             return $this->api->failed()->code(400)->message($exception->getMessage())->send();
@@ -117,7 +117,7 @@ class {{ $controllerBaseName }}  extends Controller
     public function destroy(Destroy{{$modelBaseName}} $request, {{$modelBaseName}} ${{$modelVariableName}})
     {
         $res = $this->repo::init(${{$modelVariableName}})->destroy();
-        return $this->api->success()->message("{{$modelTitle}} has been deleted")->payload($res)->code(200)->send();
+        return $this->api->success()->message("{{__($modelTitle)}} {{__('has been deleted')}}")->payload($res)->code(200)->send();
     }
 
 @if($export)
