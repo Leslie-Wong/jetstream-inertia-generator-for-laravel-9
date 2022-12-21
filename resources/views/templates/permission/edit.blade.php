@@ -9,8 +9,8 @@
     <jig-layout>
         <template {{#}}navbar-button>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.{{$modelRouteAndViewName}}.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> {{ __('Back')}} | {{ __('Edit')}}
-                    {{__($modelTitle)}} #@{{model.id}}</inertia-link>
+                <inertia-link :href="route('admin.{{$modelRouteAndViewName}}.index')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> @@{{__('Back')}} | @@{{__('Edit')}}
+                    {!! '@@{{__("' . $modelTitle. '")}}' !!} #@{{model.id}}</inertia-link>
             </div>
         </template>
         <div class="flex flex-wrap px-4">
@@ -53,11 +53,11 @@
             }
         },methods: {
             onSuccess(msg) {
-                this.displayNotification('success',msg);
+                this.displayNotification(__("success"),msg);
                 this.$inertia.visit(route('admin.{{$modelRouteAndViewName}}.index'));
             },
             onError(msg) {
-                this.displayNotification('error',msg);
+                this.displayNotification(__("success"),msg);
             }
         }
     }

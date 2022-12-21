@@ -3,9 +3,10 @@
 namespace Savannabits\JetstreamInertiaGenerator;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 
 class JetstreamInertiaGenerator extends Command
 {
@@ -25,6 +26,7 @@ class JetstreamInertiaGenerator extends Command
         $withoutBulkOptions = $this->option('without-bulk');
         $force = $this->option('force');
         $template = $this->option('template');
+
 
         $this->call('jig:generate:model', [
             'table_name' => $tableNameArgument,
@@ -132,12 +134,13 @@ class JetstreamInertiaGenerator extends Command
         ]);
 
         /*
+
+
         $this->call('jig:generate:lang', [
             'table_name' => $tableNameArgument,
             '--model-name' => $modelOption,
             '--with-export' => $exportOption,
         ]);
-
 
         if($exportOption){
             $this->call('jig:generate:export', [

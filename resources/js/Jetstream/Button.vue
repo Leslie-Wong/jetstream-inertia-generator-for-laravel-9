@@ -9,7 +9,7 @@
         props: {
             type: {
                 type: String,
-                default: 'submit',
+                default: 'Submit',
             },
         }
     }

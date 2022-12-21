@@ -10,7 +10,7 @@
             <div class="flex flex-wrap items-center justify-between w-full px-4">
                 <inertia-link :href="route('admin.{{$modelRouteAndViewName}}.index')"
                               class="text-xl font-black text-white"><i
-                        class="fas fa-arrow-left"></i> {{ __('Back')}} | {{ __('New')}} {{__($modelTitle)}}
+                        class="fas fa-arrow-left"></i> @{{__('Back')}} | @{{__('New')}} {!! '@@{{__("' . $modelTitle. '")}}' !!}
                 </inertia-link>
             </div>
         </template>
@@ -46,11 +46,11 @@
         },
         methods: {
             onSuccess(msg) {
-                this.displayNotification('success',msg);
+                this.displayNotification(__("success"),msg);
                 this.$inertia.visit(route('admin.{{$modelRouteAndViewName}}.index'));
             },
             onError(msg) {
-                this.displayNotification('error',msg);
+                this.displayNotification(__("success"),msg);
             }
         }
     }

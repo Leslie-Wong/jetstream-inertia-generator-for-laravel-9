@@ -14,7 +14,7 @@
             A new verification link has been sent to the email address you provided during registration.
         </div>
 
-        <form @submit.prevent="submit">
+        <form @Submit.prevent="Submit">
             <div class="mt-4 flex items-center justify-between">
                 <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Resend Verification Email
@@ -52,7 +52,7 @@
         },
 
         methods: {
-            submit() {
+            Submit() {
                 this.form.post(this.route('verification.send'))
             },
         },

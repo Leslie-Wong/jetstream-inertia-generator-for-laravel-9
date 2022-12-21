@@ -22,7 +22,7 @@
             inline-template>
             @endif
 
-                <form class="form-horizontal" method="post" {{'@'}}submit.prevent="onSubmit" :action="action">
+                <form class="form-horizontal" method="post" {{'@'}}Submit.prevent="onSubmit" :action="action">
 
                     <div class="card-header">
                         <i class="fa fa-plus"></i> {{'{{'}} trans('admin.{{ $modelLangFormat }}.actions.edit', ['name' => ${{ $modelVariableName }}->{{__($modelTitle)}}]) }}
@@ -35,8 +35,8 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
+                        <button type="Submit" class="btn btn-primary">
+                            <i class="fa" :class="Submiting ? 'fa-spinner' : 'fa-download'"></i>
                             @{{ trans('savannabits/admin-ui::admin.btn.save') }}
                         </button>
                     </div>

@@ -4,7 +4,7 @@
         <h3 slot="title" v-else class="py-2 font-black border-b">Donate Your Wallet Balance</h3>
         <div slot="content">
             <div class="p-3 text-2xl font-black bg-success-100 text-success">Balance: KES {{currentBalance | numeralFormat}}</div>
-            <form ref="donationForm" @submit.prevent="makeDonation">
+            <form ref="donationForm" @Submit.prevent="makeDonation">
                 <div class="my-2">
                     <jet-label>Enter Recipient Number</jet-label>
                     <jet-input ref="donationRecipient" type="text" class="w-full" @input="detectUser"></jet-input>
@@ -20,7 +20,7 @@
                     <jet-label>Comment (Optional)</jet-label>
                     <jig-textarea class="w-full" v-model="comment"></jig-textarea>
                 </div>
-                <input v-if="recipientNumber && detectUser && !processing" type="submit" v-show="false">
+                <input v-if="recipientNumber && detectUser && !processing" type="Submit" v-show="false">
             </form>
         </div>
         <div slot="footer" class="text-right gap-x-2">
@@ -97,7 +97,7 @@ export default defineComponent({
                 }).catch(err => {
                     vm.identifiedUser = null;
                     vm.recipientNumber = null;
-                    vm.displayNotification('error',err.response?.data.message || err.message || err);
+                    vm.displayNotification(__("success"),err.response?.data.message || err.message || err);
                 }).finally(() => {
                     vm.processing = false;
                 });
@@ -108,7 +108,7 @@ export default defineComponent({
             const vm = this;
             if (!this.recipientNumber || !this.amount ) return false;
             if (this.currentBalance < this.amount) {
-                this.displayNotification('error', "You can only donate what you have.");
+                this.displayNotification(__("error"),"You can only donate what you have.");
                 return false;
             }
             this.processing = true;
@@ -118,10 +118,10 @@ export default defineComponent({
                 recipient_number: this.recipientNumber,
                 comment: this.comment,
             }).then(res => {
-                this.displayNotification('success', res.data.message);
+                this.displayNotification(__("success"),res.data.message);
                 this.closeThisModal();
             }).catch(err => {
-                this.displayNotification('error', err.response?.data?.message || err.message || err);
+                this.displayNotification(__("error"),err.response?.data?.message || err.message || err);
             }).finally(res => {
                 this.processing = false;
             });

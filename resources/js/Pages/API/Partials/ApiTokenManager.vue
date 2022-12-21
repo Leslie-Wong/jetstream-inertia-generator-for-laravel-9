@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Generate API Token -->
-        <jet-form-section @submitted="createApiToken">
+        <jet-form-section @Submitted="createApiToken">
             <template #title>
                 Create API Token
             </template>

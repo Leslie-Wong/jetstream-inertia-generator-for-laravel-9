@@ -18,7 +18,7 @@ quality to benefit the project. Many developers have different skillsets, streng
 
 ## Viability
 
-When requesting or submitting new features, first consider whether it might be useful to others. Open
+When requesting or Submitting new features, first consider whether it might be useful to others. Open
 source projects are used by many developers, who may have entirely different needs to your own. Think about
 whether or not your feature is likely to be used by other users of the project.
 
@@ -31,10 +31,10 @@ Before filing an issue:
 - Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
 - Check the pull requests tab to ensure that the feature isn't already in progress.
 
-Before submitting a pull request:
+Before Submitting a pull request:
 
 - Check the codebase to ensure that your feature doesn't already exist.
-- Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
+- Check the pull requests to ensure that another person hasn't already Submitted the feature or fix.
 
 ## Requirements
 
@@ -50,6 +50,6 @@ If the project maintainer has any additional requirements, you will find them li
 
 - **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
 
-- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](https://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
+- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](https://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before Submitting.
 
 **Happy coding**!

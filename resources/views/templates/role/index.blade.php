@@ -1,20 +1,20 @@
 <template>
     <jig-layout>
-        <template {{'#'}}header>
+        <template {{'#'}}navbar-button>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
-                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> {{__('Back')}}</inertia-link>
+                <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> @{{__('Back')}}</inertia-link>
                 <div class="flex gap-x-2">
-                    <inertia-button v-if="can.create" :href="route('admin.{{$modelRouteAndViewName}}.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> {{__('New')}}
-                        {{__($modelTitle)}}</inertia-button>
-                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo"><i class="fas fa-redo"></i> {{__('Refresh')}}</inertia-button>
+                    <inertia-button v-if="can.create" :href="route('admin.{{$modelRouteAndViewName}}.create')" classes="bg-green-100 hover:bg-green-200 text-primary"><i class="fas fa-plus"></i> @{{__('New')}}
+                        {!! '@{{__("' . $modelTitle. '")}}' !!}</inertia-button>
+                    <inertia-button @click.native="$refreshDt(tableId)" classes="bg-indigo-100 hover:bg-green-200 text-indigo"><i class="fas fa-redo"></i> @{{__('Refresh')}}</inertia-button>
                 </div>
 
             </div>
         </template>
         <div v-if="can.viewAny" class="flex flex-wrap px-4">
             <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md">
-                <h3 class="w-full p-4 mb-2 text-lg font-black sm:rounded-t-lg bg-primary-100"><i class="mr-2 fas fa-bars"></i> {{__('List of All')}}
-                    {{Str::plural($modelTitle)}}</h3>
+                <h3 class="w-full p-4 mb-2 text-lg font-black sm:rounded-t-lg bg-primary-100"><i class="mr-2 fas fa-bars"></i> @{{__('List of All')}}
+                    {!! '@{{__("' . Str::plural($modelTitle). '")}}' !!}</h3>
                 <div class="p-4">
                     <dt-component
                         :table-id="tableId"
@@ -28,12 +28,12 @@
                 </div>
                 <jet-confirmation-modal title="Confirm Deletion" :show="confirmDelete">
                     <template v-slot:content>
-                        <div>{{__('Are you sure you want to delete this record?')}}</div>
+                        <div>@{{__('Are you sure you want to delete this record?')}}</div>
                     </template>
                     <template v-slot:footer>
                         <div class="flex justify-end gap-x-2">
-                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-red-500">{{__('Cancel')}}</inertia-button>
-                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-green-500">{{__('Yes, Delete')}}</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-red-500">@{{__('Cancel')}}</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-green-500">@{{__('Yes, Delete')}}</inertia-button>
                         </div>
                     </template>
                 </jet-confirmation-modal>
@@ -44,17 +44,17 @@
                         position-class="align-middle"
                         @close="currentModel = null; showModal = false">
 
-                        <template {{'#'}}{{'title'}}>{{__('Show')}} {{__($modelTitle)}} {{'#'}}{{'{{'}}currentModel.id}}</template>
+                        <template {{'#'}}{{'title'}}>@{{__('Show')}} {!! '@{{__("' . $modelTitle. '")}}' !!} {{'#'}}{{'{{'}}currentModel.id}}</template>
                         <show-{{$modelRouteAndViewName}}-form :model="currentModel"></show-{{$modelRouteAndViewName}}-form>
                         <template {{'#'}}{{'footer'}}>
-                            <inertia-button class="px-4 text-white bg-primary" {{'@'}}click="showModal = false; currentModel = null">{{__('Close')}}</inertia-button>
+                            <inertia-button class="px-4 text-white bg-primary" {{'@'}}click="showModal = false; currentModel = null">@{{__('Close')}}</inertia-button>
                         </template>
                     </jig-modal>
                 </div>
             </div>
         </div>
         <div v-else class="p-4 font-bold text-red-500 bg-red-100 rounded-md shadow-md ">
-            {{__('You are not authorized to view a list of')}} {{$modelTitlePlural}}
+            @{{__('You are not authorized to view a list of')}} {!! '@{{__("' . $modelTitlePlural. '")}}' !!}
         </div>
     </jig-layout>
 </template>
@@ -136,12 +136,12 @@
                 if (this.currentModel) {
                     this.$inertia.delete(route('admin.{{$modelRouteAndViewName}}.destroy', vm.currentModel),{
                         onFinish: res => {
-                            this.displayNotification('success', "Item deleted.");
+                            this.displayNotification(__("success"),__("Item deleted."));
                             vm.$refreshDt(vm.tableId);
                         },
                         onError: err => {
                             console.log(err);
-                            this.displayNotification('error', "There was an error while deleting the item.");
+                            this.displayNotification(__("error"),__("There was an error while deleting the item."));
                         }
                     });
                 }
@@ -152,7 +152,7 @@
                 axios.put(route(`api.{{$modelRouteAndViewName}}.update`,model.id),{
                     enabled: enabled
                 }).then(res => {
-                    this.displayNotification('success', res.data.message);
+                    this.displayNotification(__("success"),res.data.message);
                     this.$refreshDt(this.tableId);
                 })
             }

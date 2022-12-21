@@ -10,7 +10,7 @@
     <jig-tabs :class="`border-none`" nav-classes="bg-secondary-300 rounded-t-lg border-b-4 border-primary">
         <template #nav>
             <jig-tab-link @activate="setTab" :active-classes="tabActiveClasses" :tab-controller="activeTab"
-                          tab="basic-info">Basic Info
+                          tab="basic-info">@{{__("Basic Info")}}
             </jig-tab-link>
             <jig-tab-link @activate="setTab" :active-classes="tabActiveClasses" :tab-controller="activeTab"
                           tab="assign-permissions">Assign Permissions
@@ -18,7 +18,7 @@
         </template>
         <template #content>
             <jig-tab name="basic-info" :tab-controller="activeTab">
-                <form {{'@submit'}}.prevent="updateModel">
+                <form {{'@Submit'}}.prevent="updateModel">
                 @foreach($columns as $col)
 @if($col['type'] === 'date' )@php $hasDate = true; echo "\r";@endphp
                     <div class=" sm:col-span-4">
@@ -133,7 +133,7 @@
                 @endif
 
                     <div class="mt-2 text-right">
-                        <inertia-button type="submit" class="bg-primary font-semibold text-white" :disabled="form.processing">Submit</inertia-button>
+                        <inertia-button type="Submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
                     </div>
                 </form>
             </jig-tab>
@@ -194,15 +194,15 @@ export default {
                 {
                     onSuccess: res => {
                         if (this.flash.success) {
-                            this.$emit('success', this.flash.success);
+                            this.$emit(__("success"),__(this.flash.success));
                         } else if (this.flash.error) {
-                            this.$emit('error', this.flash.error);
+                            this.$emit(__("error"),__(this.flash.error));
                         } else {
-                            this.$emit('error', "Unknown server error.")
+                            this.$emit(__("error"),__("Unknown server error."))
                         }
                     },
                     onError: res => {
-                        this.$emit('error', "A server error occurred");
+                        this.$emit(__("error"),__("A server error occurred"));
                     }
                 }, {remember: false, preserveState: true})
         },

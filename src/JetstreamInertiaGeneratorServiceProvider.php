@@ -7,6 +7,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Savannabits\JetstreamInertiaGenerator\Helpers\JigInstaller;
 use Savannabits\JetstreamInertiaGenerator\Middleware\JigMiddleware;
+use Illuminate\Support\Str;
 
 class JetstreamInertiaGeneratorServiceProvider extends RouteServiceProvider
 {
@@ -39,7 +40,7 @@ class JetstreamInertiaGeneratorServiceProvider extends RouteServiceProvider
             Generators\DestroyRequest::class,
 //            Generators\ImpersonalLoginRequest::class,
 //            Generators\BulkDestroyRequest::class,
-//            Generators\Lang::class,
+            Generators\Lang::class,
             Generators\Permissions::class,
             Generators\Export::class,
         ]);

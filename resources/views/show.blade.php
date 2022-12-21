@@ -1,13 +1,13 @@
 <template>
     <jig-layout>
-        <template {{'#'}}header>
+        <template {{'#'}}navbar-button>
             <div
                 class="flex flex-wrap items-center justify-between w-full px-4"
             >
                 <inertia-link
                     :href="route('admin.{{$modelRouteAndViewName}}.index')"
                     class="text-2xl font-black text-white"
-                ><i class="fas fa-arrow-left"></i> {{__('Back')}} | {{__('Details of')}} {{__($modelTitle)}}
+                ><i class="fas fa-arrow-left"></i> @{{__('Back')}} | @{{__('Details of')}} {!! '@{{__("' . $modelTitle. '")}}' !!}
                     #@{{ model.id }}</inertia-link>
             </div>
         </template>
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div v-else class="px-4 text-lg font-bold text-center text-red-500 bg-white rounded-md shadow-md space-4">
-        {{__("You don't have permission to view this resource.")}}
+        @{{__("You don't have permission to view this resource.")}}
         </div>
     </jig-layout>
 </template>

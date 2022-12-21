@@ -1,5 +1,5 @@
 <template>
-    <jet-form-section @submitted="updatePassword">
+    <jet-form-section @Submitted="updatePassword">
         <template #title>
             Update Password
         </template>

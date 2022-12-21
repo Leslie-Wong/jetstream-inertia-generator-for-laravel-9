@@ -6,7 +6,7 @@
     $hasDate = false;
 @endphp
 <template>
-    <form class="w-full" {{'@submit'}}.prevent="storeModel">
+    <form class="w-full" {{'@Submit'}}.prevent="storeModel">
     @foreach($columns as $col)
     @if($col['type'] === 'date' )
     @php $hasDate = true; @endphp
@@ -138,7 +138,7 @@
 @endif
 
         <div class="mt-2 text-right">
-            <inertia-button type="submit" class="font-semibold bg-success disabled:opacity-25" :disabled="form.processing">Submit</inertia-button>
+            <inertia-button type="Submit" class="font-semibold bg-success disabled:opacity-25" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
         </div>
     </form>
 </template>
@@ -211,15 +211,15 @@
                 this.form.post(this.route('admin.{{$modelRouteAndViewName}}.store'),{
                     onSuccess: res => {
                         if (this.flash.success) {
-                            this.$emit('success',this.flash.success);
+                            this.$emit(__("success"),__(this.flash.success));
                         } else if (this.flash.error) {
-                            this.$emit('error',this.flash.error);
+                            this.$emit(__("success"),__(this.flash.error));
                         } else {
-                            this.$emit('error',"Unknown server error.")
+                            this.$emit(__("success"),__("Unknown server error."))
                         }
                     },
                     onError: res => {
-                        this.$emit('error',"A server error occurred");
+                        this.$emit(__("success"),__("A server error occurred"));
                     }
                 },{remember: false, preserveState: true})
             }

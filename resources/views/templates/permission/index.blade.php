@@ -1,6 +1,6 @@
 <template>
     <jig-layout>
-        <template {{'#'}}header>
+        <template {{'#'}}navbar-button>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
                 <inertia-link :href="route('admin.dashboard')" class="text-xl font-black text-white"><i class="fas fa-arrow-left"></i> {{__('Back')}}</inertia-link>
                 <div class="flex gap-x-2">
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div v-else class="p-4 font-bold text-red-500 bg-red-100 rounded-md shadow-md ">
-            {{__('You are not authorized to view a list of')}} {{$modelTitlePlural}}
+            {{__('You are not authorized to view a list of')}} {!! '@{{__("' . $modelTitlePlural. '")}}' !!}
         </div>
     </jig-layout>
 </template>
@@ -136,12 +136,12 @@
                 if (this.currentModel) {
                     this.$inertia.delete(route('admin.{{$modelRouteAndViewName}}.destroy', vm.currentModel),{
                         onFinish: res => {
-                            this.displayNotification('success', "Item deleted.");
+                            this.displayNotification(__("success"),__("Item deleted."));
                             vm.$refreshDt(vm.tableId);
                         },
                         onError: err => {
                             console.log(err);
-                            this.displayNotification('error', "There was an error while deleting the item.");
+                            this.displayNotification(__("error"),__("There was an error while deleting the item."));
                         }
                     });
                 }
@@ -152,7 +152,7 @@
                 axios.put(route(`api.{{$modelRouteAndViewName}}.update`,model.id),{
                     enabled: enabled
                 }).then(res => {
-                    this.displayNotification('success', res.data.message);
+                    this.displayNotification(__("success"),res.data.message);
                     this.$refreshDt(this.tableId);
                 })
             }

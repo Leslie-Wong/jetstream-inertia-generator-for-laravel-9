@@ -69,7 +69,7 @@ export default {
                 let permGroup = vm.permissions[groupKey];
                 await vm.togglePermGroup(permGroup, checked);
             }
-            this.displayNotification('success',`All permissions have been ${checked ? 'Assigned.': 'Revoked.'}`)
+            this.displayNotification(__("success"),`All permissions have been ${checked ? 'Assigned.': 'Revoked.'}`)
         },
         async togglePermGroup(permGroup, checked) {
             const vm = this;
@@ -87,7 +87,7 @@ export default {
                 } else {
                 }
             }
-            this.displayNotification('success',`All permissions in the group have been ${checked ? 'Assigned.': 'Revoked.'}`)
+            this.displayNotification(__("success"),`All permissions in the group have been ${checked ? 'Assigned.': 'Revoked.'}`)
         }
     }
 }

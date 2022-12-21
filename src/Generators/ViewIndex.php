@@ -1,6 +1,7 @@
 <?php namespace Savannabits\JetstreamInertiaGenerator\Generators;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Console\Input\InputOption;
 
 class ViewIndex extends ViewGenerator {
@@ -82,6 +83,7 @@ class ViewIndex extends ViewGenerator {
     protected function buildView(): string
     {
 
+        Log::info("resource ==> \n".var_export($this->resource,true));
         return view('jig::'.$this->view, [
             'modelBaseName' => $this->modelBaseName,
             'modelRouteAndViewName' => Str::plural($this->modelRouteAndViewName),
@@ -98,9 +100,11 @@ class ViewIndex extends ViewGenerator {
             'containsPublishedAtColumn' => in_array("published_at", array_column($this->readColumnsFromTable($this->tableName)->toArray(), 'name')),
             'withoutBulk' => $this->withoutBulk,
             'columnsToQuery' => $this->readColumnsFromTable($this->tableName)->filter(function($column) {
+                Log::info("columnsToQuery ==> \n".var_export($column,true));
                 return !($column['type'] == 'text' || $column['name'] == "password" || $column['name'] == "remember_token" || $column['name'] == "slug" || $column['name'] == "created_at" || $column['name'] == "deleted_at"||Str::contains($column['name'],"_id"));
             })->pluck('name')->toArray(),
             'columns' => $this->readColumnsFromTable($this->tableName)->reject(function($column) {
+                    Log::info("columns ==> \n".var_export($column,true));
                     return ($column['type'] == 'text'
                         || in_array($column['name'], ["password", "remember_token", "slug", "created_at", "updated_at", "deleted_at"])
                         || ($column['type'] == 'json' && in_array($column['name'], ["perex", "text", "body"]))
@@ -119,6 +123,7 @@ class ViewIndex extends ViewGenerator {
                     }
 
                     $col['filters'] = $filters->isNotEmpty() ? ' | '.implode(' | ', $filters->toArray()) : '';
+
 
                     return $col;
                 }),

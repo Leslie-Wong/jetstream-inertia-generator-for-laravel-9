@@ -10,11 +10,11 @@
             </div>
             <jig-tabs>
                 <template #nav>
-                    <jig-tab-link @activate="activateTab" :active-classes="activeTabLinkClasses" tab="info" :tab-controller="activeTab">Basic Information</jig-tab-link>
+                    <jig-tab-link @activate="activateTab" :active-classes="activeTabLinkClasses" tab="info" :tab-controller="activeTab">@{{__("Basic Info")}}rmation</jig-tab-link>
                     <jig-tab-link @activate="activateTab" :active-classes="activeTabLinkClasses" tab="more-details" :tab-controller="activeTab"> More Details</jig-tab-link>
                 </template>
                 <template #content>
-                    <jig-tab name="info" :tab-controller="activeTab">Basic info goes here</jig-tab>
+                    <jig-tab name="info" :tab-controller="activeTab">@{{__("Basic Info")}} goes here</jig-tab>
                     <jig-tab name="more-details" :tab-controller="activeTab">More Info Goes Here</jig-tab>
                 </template>
             </jig-tabs>

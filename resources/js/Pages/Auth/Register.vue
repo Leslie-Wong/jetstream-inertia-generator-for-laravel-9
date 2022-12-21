@@ -8,7 +8,7 @@
 
         <jet-validation-errors class="mb-4" />
 
-        <form @submit.prevent="submit">
+        <form @Submit.prevent="Submit">
             <div>
                 <jet-label for="name" value="Name" />
                 <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
@@ -90,7 +90,7 @@
         },
 
         methods: {
-            submit() {
+            Submit() {
                 this.form.post(this.route('register'), {
                     onFinish: () => this.form.reset('password', 'password_confirmation'),
                 })

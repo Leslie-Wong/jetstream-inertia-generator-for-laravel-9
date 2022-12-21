@@ -62,7 +62,7 @@ class {{ $controllerBaseName }}  extends Controller
         try {
             $data = $request->sanitizedObject();
             ${{$modelVariableName}} = $this->repo::store($data);
-            return $this->api->success()->message('{{ __($modelTitle)}} {{ __('Created')}}')->payload(${{$modelVariableName}})->send();
+            return $this->api->success()->message('@{{__($modelTitle)}} @{{__("Created")}}')->payload(${{$modelVariableName}})->send();
         } catch (\Throwable $exception) {
             \Log::error($exception);
             return $this->api->failed()->message($exception->getMessage())->payload([])->code(500)->send();
