@@ -55,11 +55,11 @@
             }
         },methods: {
             onSuccess(msg) {
-                this.displayNotification(__("success"),msg);
+                this.displayNotification(this.__("success"),msg);
                 this.$inertia.visit(route('admin.{{$modelRouteAndViewName}}.index'));
             },
             onError(msg) {
-                this.displayNotification(__("success"),msg);
+                this.displayNotification(this.__("success"),msg);
             }
         }
     });

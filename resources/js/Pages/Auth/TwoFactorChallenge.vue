@@ -18,7 +18,7 @@
 
         <jet-validation-errors class="mb-4" />
 
-        <form @Submit.prevent="Submit">
+        <form @submit.prevent="submit">
             <div v-if="! recovery">
                 <jet-label for="code" value="Code" />
                 <jet-input ref="code" id="code" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.code" autofocus autocomplete="one-time-code" />
@@ -93,7 +93,7 @@
                 })
             },
 
-            Submit() {
+            submit() {
                 this.form.post(this.route('two-factor.login'))
             }
         }

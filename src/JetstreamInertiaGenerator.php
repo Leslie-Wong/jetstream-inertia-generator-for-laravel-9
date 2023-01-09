@@ -78,6 +78,14 @@ class JetstreamInertiaGenerator extends Command
             '--template' => $template,
         ]);
 
+
+        $this->call('jig:generate:column-transition', [
+            'table_name' => $tableNameArgument,
+            '--model-name' => $modelOption,
+            '--force' => $force,
+            '--template' => $template,
+        ]);
+
         $this->call('jig:generate:api:controller', [
             'table_name' => $tableNameArgument,
             'class_name' => $controllerOption,

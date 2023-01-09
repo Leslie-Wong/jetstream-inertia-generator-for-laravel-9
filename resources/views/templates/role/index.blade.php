@@ -12,7 +12,7 @@
             </div>
         </template>
         <div v-if="can.viewAny" class="flex flex-wrap px-4">
-            <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md">
+            <div class="z-10 flex-auto bg-white md:rounded-md md:shadow-md w-full">
                 <h3 class="w-full p-4 mb-2 text-lg font-black sm:rounded-t-lg bg-primary-100"><i class="mr-2 fas fa-bars"></i> @{{__('List of All')}}
                     {!! '@{{__("' . Str::plural($modelTitle). '")}}' !!}</h3>
                 <div class="p-4">
@@ -32,8 +32,8 @@
                     </template>
                     <template v-slot:footer>
                         <div class="flex justify-end gap-x-2">
-                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-red-500">@{{__('Cancel')}}</inertia-button>
-                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-green-500">@{{__('Yes, Delete')}}</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-orange-500 text-white">@{{__('Cancel')}}</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-blue-500 text-white">@{{__('Yes, Delete')}}</inertia-button>
                         </div>
                     </template>
                 </jet-confirmation-modal>
@@ -136,7 +136,7 @@
                 if (this.currentModel) {
                     this.$inertia.delete(route('admin.{{$modelRouteAndViewName}}.destroy', vm.currentModel),{
                         onFinish: res => {
-                            this.displayNotification(__("success"),__("Item deleted."));
+                            this.displayNotification(this.__("success"),this.__("Item deleted."));
                             vm.$refreshDt(vm.tableId);
                         },
                         onError: err => {
@@ -152,7 +152,7 @@
                 axios.put(route(`api.{{$modelRouteAndViewName}}.update`,model.id),{
                     enabled: enabled
                 }).then(res => {
-                    this.displayNotification(__("success"),res.data.message);
+                    this.displayNotification(this.__("success"),res.data.message);
                     this.$refreshDt(this.tableId);
                 })
             }

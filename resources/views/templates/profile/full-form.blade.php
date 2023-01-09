@@ -16,7 +16,7 @@
 
                 inline-template>
 
-                <form class="form-horizontal form-edit" method="post" {{'@'}}Submit.prevent="onSubmit" :action="action">
+                <form class="form-horizontal form-edit" method="post" {{'@'}}submit.prevent="onsubmit" :action="action">
 
                     <div class="card-header">
                         <i class="fa fa-pencil"></i> {{'{{'}} trans('admin.{{ $modelLangFormat }}.actions.edit_profile') }}
@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="Submit" class="btn btn-primary" :disabled="Submiting">
-                            <i class="fa" :class="Submiting ? 'fa-spinner' : 'fa-download'"></i>
+                        <button type="submit" class="btn btn-primary" :disabled="submiting">
+                            <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
                             @{{ trans('savannabits/admin-ui::admin.btn.save') }}
                         </button>
                     </div>

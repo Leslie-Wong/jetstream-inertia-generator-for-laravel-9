@@ -18,7 +18,7 @@
         </template>
         <template #content>
             <jig-tab name="basic-info" :tab-controller="activeTab">
-                <form {{'@Submit'}}.prevent="updateModel">
+                <form {{'@submit'}}.prevent="updateModel">
                 @foreach($columns as $col)
 @if($col['type'] === 'date' )@php $hasDate = true; echo "\r";@endphp
                     <div class=" sm:col-span-4">
@@ -133,7 +133,7 @@
                 @endif
 
                     <div class="mt-2 text-right">
-                        <inertia-button type="Submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
+                        <inertia-button type="submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
                     </div>
                 </form>
             </jig-tab>
@@ -194,7 +194,7 @@ export default {
                 {
                     onSuccess: res => {
                         if (this.flash.success) {
-                            this.$emit(__("success"),__(this.flash.success));
+                            this.$emit(this.__("success"),this.__(this.flash.success));
                         } else if (this.flash.error) {
                             this.$emit(__("error"),__(this.flash.error));
                         } else {

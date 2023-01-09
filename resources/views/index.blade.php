@@ -32,8 +32,8 @@
                     </template>
                     <template v-slot:footer>
                         <div class="flex justify-end gap-x-2">
-                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-red-500">@{{__('Cancel')}}</inertia-button>
-                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-green-500">@{{__('Yes, Delete')}}</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.stop="cancelDelete" class="bg-orange-500 text-white">@{{__('Cancel')}}</inertia-button>
+                            <inertia-button as="button" type="button" @click.native.prevent="deleteModel" class="bg-blue-500 text-white">@{{__('Yes, Delete')}}</inertia-button>
                         </div>
                     </template>
                 </jet-confirmation-modal>
@@ -138,12 +138,12 @@
                 if (this.currentModel) {
                     this.$inertia.delete(route('admin.{{$modelRouteAndViewName}}.destroy', vm.currentModel),{
                         onFinish: res => {
-                            this.displayNotification(__("success"),__("Item deleted."));
+                            this.displayNotification(this.__("success"),this.__("Item deleted."));
                             vm.$refreshDt(vm.tableId);
                         },
                         onError: err => {
                             console.log(err);
-                            this.displayNotification(__("error"),__("There was an error while deleting the item."));
+                            this.displayNotification(this.__("error"),this.__("There was an error while deleting the item."));
                         }
                     });
                 }
@@ -154,7 +154,7 @@
                 axios.put(route(`api.{{$modelRouteAndViewName}}.update`,model.id),{
                     enabled: enabled
                 }).then(res => {
-                    this.displayNotification(__("success"),res.data.message);
+                    this.displayNotification(this.__("success"),res.data.message);
                     this.$refreshDt(this.tableId);
                 })
             }

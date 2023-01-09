@@ -6,7 +6,7 @@
 @endphp
 <template>
     <jig-layout>
-        <template {{#}}navbar-button>
+        <template {{'#'}}navbar-button>
             <div class="flex flex-wrap items-center justify-between w-full px-4">
                 <inertia-link :href="route('admin.{{$modelRouteAndViewName}}.index')"
                               class="text-xl font-black text-white"><i
@@ -46,11 +46,11 @@
         },
         methods: {
             onSuccess(msg) {
-                this.displayNotification(__("success"),msg);
+                this.displayNotification(this.__("success"),msg);
                 this.$inertia.visit(route('admin.{{$modelRouteAndViewName}}.index'));
             },
             onError(msg) {
-                this.displayNotification(__("success"),msg);
+                this.displayNotification(this.__("success"),msg);
             }
         }
     }

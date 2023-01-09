@@ -43,6 +43,7 @@ class JetstreamInertiaGeneratorServiceProvider extends RouteServiceProvider
             Generators\Lang::class,
             Generators\Permissions::class,
             Generators\Export::class,
+            Generators\ColumnTransition::class,
         ]);
         /*
          * Optional methods to load your package assets

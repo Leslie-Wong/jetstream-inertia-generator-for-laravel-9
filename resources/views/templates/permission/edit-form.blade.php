@@ -7,7 +7,7 @@
     $hasPassword = false;
 @endphp
 <template>
-    <form {{'@Submit'}}.prevent="updateModel">
+    <form {{'@submit'}}.prevent="updateModel">
         @foreach($columns as $col)
 @if($col['type'] === 'date' )@php $hasDate = true; echo "\r";@endphp
         <div class=" sm:col-span-4">
@@ -122,7 +122,7 @@
         @endif
 
         <div class="mt-2 text-right">
-            <inertia-button type="Submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
+            <inertia-button type="submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
         </div>
     </form>
 </template>
@@ -187,15 +187,15 @@
                     {
                         onSuccess: res => {
                             if (this.flash.success) {
-                                this.$emit(__("success"),__(this.flash.success));
+                                this.$emit(this.__("success"),this.__(this.flash.success));
                             } else if (this.flash.error) {
-                                this.$emit(__("success"),__(this.flash.error));
+                                this.$emit(this.__("success"),this.__(this.flash.error));
                             } else {
-                                this.$emit(__("success"),__("Unknown server error."))
+                                this.$emit(this.__("success"),this.__("Unknown server error."))
                             }
                         },
                         onError: res => {
-                            this.$emit(__("success"),__("A server error occurred"));
+                            this.$emit(this.__("success"),this.__("A server error occurred"));
                         }
                     },{remember: false, preserveState: true})
             }

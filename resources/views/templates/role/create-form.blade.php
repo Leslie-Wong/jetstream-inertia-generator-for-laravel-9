@@ -1,5 +1,5 @@
 <template>
-    <form class="w-full" {{'@'}}Submit.prevent="storeModel">
+    <form class="w-full" {{'@'}}submit.prevent="storeModel">
         <div class=" sm:col-span-4">
             <jet-label class="required" for="title" value="Title" />
             <jet-input class="w-full" type="text" id="title" name="title" v-model="form.title"
@@ -9,7 +9,7 @@
         </div>
 
         <div class="mt-2 text-right">
-            <inertia-button type="Submit" class="bg-success font-semibold disabled:opacity-25" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
+            <inertia-button type="submit" class="bg-success font-semibold disabled:opacity-25" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
         </div>
     </form>
 </template>
@@ -48,15 +48,15 @@
                 this.form.post(this.route('admin.roles.store'),{
                     onSuccess: res => {
                         if (this.flash.success) {
-                            this.{{'$'}}emit(__("success"),__(this.flash.success));
+                            this.{{'$'}}emit(this.__("success"),this.__(this.flash.success));
                         } else if (this.flash.error) {
-                            this.{{'$'}}emit(__("success"),__(this.flash.error));
+                            this.{{'$'}}emit(this.__("success"),this.__(this.flash.error));
                         } else {
-                            this.{{'$'}}emit(__("success"),__("Unknown server error."))
+                            this.{{'$'}}emit(this.__("success"),this.__("Unknown server error."))
                         }
                     },
                     onError: res => {
-                        this.{{'$'}}emit(__("success"),__("A server error occurred"));
+                        this.{{'$'}}emit(this.__("success"),this.__("A server error occurred"));
                     }
                 },{remember: false, preserveState: true})
             }

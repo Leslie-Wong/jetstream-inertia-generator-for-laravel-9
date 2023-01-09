@@ -1,5 +1,5 @@
 <template>
-    <jet-form-section @Submitted="updateProfileInformation">
+    <jet-form-section @submitted="updateProfileInformation">
         <template #title>
             Profile Information
         </template>

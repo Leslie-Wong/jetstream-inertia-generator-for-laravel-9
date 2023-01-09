@@ -18,7 +18,7 @@
         </template>
         <template #content>
             <jig-tab name="basic-info" :tab-controller="activeTab">
-                <form {{'@Submit'}}.prevent="updateModel">
+                <form {{'@submit'}}.prevent="updateModel">
                 @foreach($columns as $col)
 @if($col['type'] === 'date' )@php $hasDate = true; echo "\r";@endphp
                     <div class=" sm:col-span-4">
@@ -133,7 +133,7 @@
             @endif
 
                     <div class="mt-2 text-right">
-                        <inertia-button type="Submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
+                        <inertia-button type="submit" class="bg-primary font-semibold text-white" :disabled="form.processing">@{{__("Submit")}}</inertia-button>
                     </div>
                 </form>
             </jig-tab>
@@ -229,15 +229,15 @@
                     {
                         onSuccess: res => {
                             if (this.flash.success) {
-                                this.{{'$'}}emit(__("success"),__(this.flash.success));
+                                this.{{'$'}}emit(this.__("success"),this.__(this.flash.success));
                             } else if (this.flash.error) {
-                                this.{{'$'}}emit(__("success"),__(this.flash.error));
+                                this.{{'$'}}emit(this.__("success"),this.__(this.flash.error));
                             } else {
-                                this.{{'$'}}emit(__("success"),__("Unknown server error."))
+                                this.{{'$'}}emit(this.__("success"),this.__("Unknown server error."))
                             }
                         },
                         onError: res => {
-                            this.{{'$'}}emit(__("success"),__("A server error occurred"));
+                            this.{{'$'}}emit(this.__("success"),this.__("A server error occurred"));
                         }
                     },{remember: false, preserveState: true})
             },
@@ -245,9 +245,9 @@
                 const vm = this;
                 axios.post(this.route('api.users.assign-role',this.form.id),{role: role}).then(res => {
                     this.{{'$'}}inertia.reload({preserveState: true});
-                    this.displayNotification(__("success"),res.data.message)
+                    this.displayNotification(this.__("success"),res.data.message)
                 }).catch(err => {
-                    this.displayNotification(__("success"),err.response?.data?.message || err.message || err)
+                    this.displayNotification(this.__("success"),err.response?.data?.message || err.message || err)
                     vm.form.assigned_roles[role.name].checked = !role.checked;
                 });
             }

@@ -98,7 +98,7 @@
                                             :key="team.id"
                                         >
                                             <form
-                                                @Submit.prevent="
+                                                @submit.prevent="
                                                     switchToTeam(team)
                                                 "
                                             >
@@ -224,7 +224,7 @@
                                     :href="route('cas.logout')"
                                     >Logout</responsive-nav-link
                                 >
-                                <form v-else @Submit.prevent="logout">
+                                <form v-else @submit.prevent="logout">
                                     <jet-dropdown-link as="button">
                                         Logout
                                     </jet-dropdown-link>
@@ -341,7 +341,7 @@
                         :href="route('cas.logout')"
                         >Logout</responsive-nav-link
                     >
-                    <form v-else method="POST" @Submit.prevent="logout">
+                    <form v-else method="POST" @submit.prevent="logout">
                         <jet-responsive-nav-link as="button">
                             Logout
                         </jet-responsive-nav-link>
@@ -386,7 +386,7 @@
                             v-for="team in $page.props.user.all_teams"
                             :key="team.id"
                         >
-                            <form @Submit.prevent="switchToTeam(team)">
+                            <form @submit.prevent="switchToTeam(team)">
                                 <jet-responsive-nav-link as="button">
                                     <div class="flex items-center">
                                         <svg

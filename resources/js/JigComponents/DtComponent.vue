@@ -105,6 +105,7 @@ export default defineComponent({
         console.log(columns);
         vm.allColumns = columns;
         let colDefs = columns.map((col, idx) => {
+            col['title'] = vm.__(col['title']);
             return {
                 responsivePriority: col.responsivePriority || -1,
                 targets: idx,

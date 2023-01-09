@@ -16,7 +16,7 @@
 
         <jet-validation-errors class="mb-4" />
 
-        <form @Submit.prevent="Submit">
+        <form @submit.prevent="submit">
             <div>
                 <jet-label for="email" value="Email" />
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
@@ -64,7 +64,7 @@
         },
 
         methods: {
-            Submit() {
+            submit() {
                 this.form.post(this.route('password.email'))
             }
         }

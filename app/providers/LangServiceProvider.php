@@ -39,6 +39,14 @@ class LangServiceProvider extends ServiceProvider
             'locale' => function () {
                 return app()->getLocale();
             },
+            'languages' => function () {
+                $langs = json_encode(glob(resource_path('lang/*.json')));
+                $p = str_replace('"',"",json_encode(resource_path('lang/')));
+                $langs = str_replace($p,"",$langs);
+                $langs = str_replace(".json","",$langs);
+
+                return json_decode($langs);
+            },
             'language' => function () {
                 return TranslationsHelper::translations(
                     resource_path('lang/'. app()->getLocale() .'.json')

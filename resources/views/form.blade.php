@@ -1,4 +1,4 @@
-<b-form v-on:Submit.prevent="ok()">
+<b-form v-on:submit.prevent="ok()">
 @foreach($columns as $col)
 @if($col['type'] === 'date' )
 <b-form-group
@@ -130,6 +130,6 @@
 @endforeach
 @endif
 @endif
-    <b-button class="d-none" type="Submit"></b-button>
+    <b-button class="d-none" type="submit"></b-button>
 </b-form>
 
